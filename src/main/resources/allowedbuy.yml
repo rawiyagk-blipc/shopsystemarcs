@@ -1,0 +1,18 @@
+# ==============================================================================
+# ArcEdgeShop - Allowed Buy Items
+# ONLY items listed here can be purchased in /shop.
+# Special/rare progression items (e.g., ELYTRA, NETHER_STAR) are blocked unless
+# explicitly added by the server owner.
+# ==============================================================================
+
+items:
+  - COBBLESTONE
+  - STONE
+  - OAK_LOG
+  - IRON_INGOT
+  - BREAD
+  - COOKED_BEEF
+  - ARROW
+  - SHIELD
+  - GOLDEN_APPLE
+  - DIAMOND

@@ -1,0 +1,89 @@
+# ==============================================================================
+# ArcEdgeShop - Modern Paper 26.1.2 - 26.3+ Shop Configuration
+# Designed for high concurrency, zero per-tick lag, and atomic exploit protection
+# ==============================================================================
+
+# Central Pricing Engine
+# Manual prices strictly override generated/ratio defaults
+pricing:
+  default-buy-price: 1000.0
+  default-sell-price: 100.0
+  sell-price-ratio: 0.10      # Sell price is 10% of buy price by default
+  prevent-profit-loops: true  # Guarantees sell price is never >= buy price
+
+# Manual Item Prices Database
+# Used synchronously for /shop, /worth, and /sell
+prices:
+  COBBLESTONE:
+    buy: 20.0
+    sell: 5.0
+  STONE:
+    buy: 25.0
+    sell: 6.0
+  OAK_LOG:
+    buy: 40.0
+    sell: 10.0
+  IRON_INGOT:
+    buy: 250.0
+    sell: 50.0
+  BREAD:
+    buy: 30.0
+    sell: 8.0
+  COOKED_BEEF:
+    buy: 60.0
+    sell: 15.0
+  ARROW:
+    buy: 15.0
+    sell: 3.0
+  SHIELD:
+    buy: 300.0
+    sell: 60.0
+  GOLDEN_APPLE:
+    buy: 1500.0
+    sell: 300.0
+  DIAMOND:
+    buy: 5000.0
+    sell: 1000.0
+
+# GUI Display Configuration
+gui:
+  title: "<gradient:#2b5876:#4e4376><bold>ArcEdge Shop</bold></gradient>"
+  rows: 4                    # 36 slots
+  fill-empty-slots: true
+  filler-item: "GRAY_STAINED_GLASS_PANE"
+  sounds:
+    purchase-success: "ENTITY_EXPERIENCE_ORB_PICKUP"
+    purchase-fail: "ENTITY_VILLAGER_NO"
+    sell-success: "ENTITY_PLAYER_LEVELUP"
+
+# Tooltip Decoration Settings
+# Adds sell value when hovering items in player inventory (Event-driven, cached)
+tooltip:
+  enabled: true
+  unit-format: "<gray>Sell Value: <green>${price} each</green></gray>"
+  stack-format: "<gray>Stack Value: <gold>${total}</gold></gray>"
+
+# Security & Exploit Protection
+security:
+  cooldown-ms: 250           # Minimum interval between clicks to stop macro/dupe exploits
+  atomic-transactions: true  # Deducts item BEFORE giving money; cancels on failure
+  log-transactions: true
+
+# Economy Settings
+economy:
+  currency-symbol: "$"
+  fallback-mode: false       # Set true if testing without a Vault economy provider
+
+# System Messages (Adventure MiniMessage formatted)
+messages:
+  prefix: "<dark_gray>[<gradient:#2b5876:#4e4376><bold>ArcEdge</bold></gradient>]</dark_gray> "
+  no-permission: "<red>You do not have permission to execute this command.</red>"
+  buy-success: "<green>Purchased <white>{amount}x {item}</white> for <gold>{price}</gold>!</green>"
+  buy-insufficient-funds: "<red>You need <gold>{price}</gold> to purchase this, but only have <gold>{balance}</gold>.</red>"
+  buy-inventory-full: "<red>Your inventory is full! Make space before buying.</red>"
+  worth-display: "<gray>{item} <white>x{amount}</white></gray>\n<gray>Sell Price: <green>{unit_price} each</green></gray>\n<gray>Stack Value: <gold>{stack_value}</gold></gray>"
+  worth-no-item: "<red>You are not holding an item or holding an invalid item.</red>"
+  worth-not-sellable: "<red>This item cannot be sold to the server.</red>"
+  sell-success: "<green>Sold <white>{amount}x {item}</white> for <gold>{total}</gold>!</green>"
+  sell-no-items: "<red>You have no sellable items in your hand.</red>"
+  reload-success: "<green>ArcEdgeShop configuration and registries reloaded successfully!</green>"

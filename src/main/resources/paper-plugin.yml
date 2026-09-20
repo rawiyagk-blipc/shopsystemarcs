@@ -1,0 +1,26 @@
+name: ArcEdgeShop
+version: 1.0.0
+main: com.arcedge.shop.ArcEdgeShop
+api-version: '1.21'
+author: ArcEdge Team
+description: Optimized, secure shop and worth system with dynamic item registry for Paper 26.1.2 - 26.3+
+
+dependencies:
+  server:
+    Vault:
+      load: BEFORE
+      required: false
+
+permissions:
+  arcedgeshop.use:
+    description: Access /shop GUI
+    default: true
+  arcedgeshop.worth:
+    description: Access /worth item evaluation
+    default: true
+  arcedgeshop.sell:
+    description: Access /sell functionality
+    default: true
+  arcedgeshop.admin:
+    description: Administrative controls and reload
+    default: op
